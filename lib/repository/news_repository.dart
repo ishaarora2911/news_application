@@ -1,16 +1,13 @@
 import 'dart:convert';
+import 'package:http/http.dart' as http;
+import '../models/categories_new_model.dart';
+import '../models/news_channel_headlines_model.dart';
+
+class NewsRepository {
 
 
-  import 'package:http/http.dart' as http;
-
-  import '../models/categories_new_model.dart';
-  import '../models/news_channel_headlines_model.dart';
-
-  class NewsRepository {
-
-
-    Future<CategoriesNewsModel> fetchNewsCategoriesApi(String category) async {
-      String newsUrl =
+  Future<CategoriesNewsModel> fetchNewsCategoriesApi(String category) async {
+    String newsUrl =
           'https://newsapi.org/v2/everything?q=$category&apiKey=f8d8606ff1c64876aeabd96a191167ef';
       final response = await http.get(Uri.parse(newsUrl));
       if (response.statusCode == 200) {
